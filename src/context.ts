@@ -28,10 +28,10 @@ export class Context {
   async sendSocketMessage<T extends MessageType<SocketMessageMap>>(
     type: T,
     payload: MessagePayload<SocketMessageMap, T>,
-    options: { timeoutMs?: number } = { timeoutMs: 30000 }
+    options: { timeoutMs?: number } = { timeoutMs: 30000 },
   ) {
     const { sendSocketMessage } = createSocketMessageSender<SocketMessageMap>(
-      this.ws
+      this.ws,
     );
     try {
       return await sendSocketMessage(type, payload, options);

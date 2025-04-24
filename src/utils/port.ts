@@ -13,11 +13,15 @@ export async function isPortInUse(port: number): Promise<boolean> {
 }
 
 export function killProcessOnPort(port: number) {
-  if (process.platform === "win32") {
-    execSync(
-      `FOR /F "tokens=5" %a in ('netstat -ano ^| findstr :${port}') do taskkill /F /PID %a`,
-    );
-  } else {
-    execSync(`lsof -ti:${port} | xargs kill -9`);
+  try {
+    if (process.platform === "win32") {
+      execSync(
+        `FOR /F "tokens=5" %a in ('netstat -ano ^| findstr :${port}') do taskkill /F /PID %a`,
+      );
+    } else {
+      execSync(`lsof -ti:${port} | xargs kill -9`);
+    }
+  } catch (error) {
+    console.error(`Failed to kill process on port ${port}:`, error);
   }
 }
