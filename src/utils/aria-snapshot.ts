@@ -1,13 +1,14 @@
 import { Context } from "@/context";
-import { ToolResult } from "@/tools/tool";
+import type { ToolResult } from "@/tools/tool";
 
 export async function captureAriaSnapshot(
   context: Context,
-  status: string = "",
+  status = "",
 ): Promise<ToolResult> {
   const url = await context.sendSocketMessage("getUrl", undefined);
   const title = await context.sendSocketMessage("getTitle", undefined);
   const snapshot = await context.sendSocketMessage("browser_snapshot", {});
+
   return {
     content: [
       {

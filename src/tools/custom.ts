@@ -2,7 +2,7 @@ import { zodToJsonSchema } from "zod-to-json-schema";
 
 import { GetConsoleLogsTool, ScreenshotTool } from "@/types/mcp/tool";
 
-import { Tool } from "./tool";
+import type { Tool } from "./tool";
 
 export const getConsoleLogs: Tool = {
   schema: {

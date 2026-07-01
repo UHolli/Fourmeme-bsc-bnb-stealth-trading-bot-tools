@@ -21,7 +21,7 @@ export type Tool = {
   schema: ToolSchema;
   handle: (
     context: Context,
-    params?: Record<string, any>,
+    params?: Record<string, unknown>,
   ) => Promise<ToolResult>;
 };
 
